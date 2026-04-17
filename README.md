@@ -25,3 +25,5 @@ Abrir:
 
 ## Entrega GitHub
 Nombre sugerido: `apellido-post2-u8`
+
+Publicacion independiente r2: 2026-04-17 07:27:04
