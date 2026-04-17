@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Curso</title>
+    <style>
+        body { font-family: Verdana, sans-serif; margin: 2rem; }
+        form { max-width: 420px; display: grid; gap: .5rem; }
+        .error { color: #b00020; }
+    </style>
+</head>
+<body>
+<h1>Nuevo Curso</h1>
+<form th:action="@{/cursos/guardar}" th:object="${curso}" method="post">
+    <label>Nombre</label>
+    <input type="text" th:field="*{nombre}">
+    <small class="error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+
+    <label>Creditos</label>
+    <input type="number" min="1" th:field="*{creditos}">
+    <small class="error" th:if="${#fields.hasErrors('creditos')}" th:errors="*{creditos}"></small>
+
+    <button type="submit">Guardar</button>
+    <a th:href="@{/cursos}">Cancelar</a>
+</form>
+</body>
+</html>

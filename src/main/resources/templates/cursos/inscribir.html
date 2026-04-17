@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscripciones</title>
+    <style>
+        body { font-family: Verdana, sans-serif; margin: 2rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { border: 1px solid #ccc; padding: 8px; }
+        .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .ok { color: #1b5e20; }
+    </style>
+</head>
+<body>
+<h1 th:text="'Inscripciones del curso: ' + ${curso.nombre}"></h1>
+<p><a th:href="@{/cursos}">Volver a cursos</a></p>
+<p class="ok" th:if="${mensaje}" th:text="${mensaje}"></p>
+
+<div class="cols">
+    <section>
+        <h2>Estudiantes Disponibles</h2>
+        <table>
+            <thead>
+            <tr><th>Nombre</th><th>Carrera</th><th>Accion</th></tr>
+            </thead>
+            <tbody>
+            <tr th:each="e : ${disponibles}">
+                <td th:text="${e.nombre + ' ' + e.apellido}"></td>
+                <td th:text="${e.carrera}"></td>
+                <td>
+                    <form th:action="@{/cursos/{cursoId}/inscribir/{estudianteId}(cursoId=${curso.id},estudianteId=${e.id})}" method="post">
+                        <button type="submit">Inscribir</button>
+                    </form>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(disponibles)}"><td colspan="3">No hay disponibles.</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Estudiantes Inscritos</h2>
+        <table>
+            <thead>
+            <tr><th>Nombre</th><th>Carrera</th><th>Accion</th></tr>
+            </thead>
+            <tbody>
+            <tr th:each="e : ${inscritos}">
+                <td th:text="${e.nombre + ' ' + e.apellido}"></td>
+                <td th:text="${e.carrera}"></td>
+                <td>
+                    <form th:action="@{/cursos/{cursoId}/desinscribir/{estudianteId}(cursoId=${curso.id},estudianteId=${e.id})}" method="post">
+                        <button type="submit">Desinscribir</button>
+                    </form>
+                </td>
+            </tr>
+            <tr th:if="${#sets.isEmpty(inscritos)}"><td colspan="3">No hay inscritos.</td></tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+</body>
+</html>

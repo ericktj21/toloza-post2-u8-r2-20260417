@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Estudiante</title>
+    <style>
+        body { font-family: Verdana, sans-serif; margin: 2rem; }
+        form { max-width: 500px; display: grid; gap: .5rem; }
+        .error { color: #b00020; }
+    </style>
+</head>
+<body>
+<h1 th:text="${estudiante.id == null} ? 'Nuevo Estudiante' : 'Editar Estudiante'"></h1>
+
+<p class="error" th:if="${errorGlobal}" th:text="${errorGlobal}"></p>
+
+<form th:action="@{/estudiantes/guardar}" th:object="${estudiante}" method="post">
+    <input type="hidden" th:field="*{id}">
+
+    <label>Nombre</label>
+    <input type="text" th:field="*{nombre}">
+    <small class="error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+
+    <label>Apellido</label>
+    <input type="text" th:field="*{apellido}">
+    <small class="error" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
+
+    <label>Correo</label>
+    <input type="email" th:field="*{correo}">
+    <small class="error" th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}"></small>
+
+    <label>Carrera</label>
+    <input type="text" th:field="*{carrera}">
+    <small class="error" th:if="${#fields.hasErrors('carrera')}" th:errors="*{carrera}"></small>
+
+    <button type="submit">Guardar</button>
+    <a th:href="@{/estudiantes}">Cancelar</a>
+</form>
+</body>
+</html>

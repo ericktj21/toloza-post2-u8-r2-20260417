@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Estudiantes</title>
+    <style>
+        body { font-family: Verdana, sans-serif; margin: 2rem; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        .ok { color: #1b5e20; }
+    </style>
+</head>
+<body>
+<h1>Estudiantes</h1>
+<p>
+    <a th:href="@{/estudiantes/nuevo}">+ Nuevo Estudiante</a> |
+    <a th:href="@{/cursos}">Gestionar Cursos</a>
+</p>
+
+<p class="ok" th:if="${mensaje}" th:text="${mensaje}"></p>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Correo</th>
+        <th>Carrera</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="e : ${estudiantes}">
+        <td th:text="${e.id}"></td>
+        <td th:text="${e.nombre}"></td>
+        <td th:text="${e.apellido}"></td>
+        <td th:text="${e.correo}"></td>
+        <td th:text="${e.carrera}"></td>
+        <td>
+            <a th:href="@{/estudiantes/editar/{id}(id=${e.id})}">Editar</a> |
+            <a th:href="@{/estudiantes/eliminar/{id}(id=${e.id})}">Eliminar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

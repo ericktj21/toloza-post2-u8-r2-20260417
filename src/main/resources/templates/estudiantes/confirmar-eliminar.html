@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar eliminacion</title>
+</head>
+<body>
+<h1>Confirmar eliminacion</h1>
+<p>
+    Vas a eliminar a <strong th:text="${estudiante.nombre + ' ' + estudiante.apellido}"></strong>.
+</p>
+<form th:action="@{/estudiantes/eliminar/{id}(id=${estudiante.id})}" method="post">
+    <button type="submit">Confirmar</button>
+    <a th:href="@{/estudiantes}">Cancelar</a>
+</form>
+</body>
+</html>

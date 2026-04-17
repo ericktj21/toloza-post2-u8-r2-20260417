@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cursos</title>
+    <style>
+        body { font-family: Verdana, sans-serif; margin: 2rem; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ccc; padding: 8px; }
+        .ok { color: #1b5e20; }
+    </style>
+</head>
+<body>
+<h1>Gestion de Cursos</h1>
+<p>
+    <a th:href="@{/cursos/nuevo}">+ Nuevo Curso</a> |
+    <a th:href="@{/estudiantes}">Ver Estudiantes</a>
+</p>
+
+<p class="ok" th:if="${mensaje}" th:text="${mensaje}"></p>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Creditos</th>
+        <th>Inscritos</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="c : ${cursos}">
+        <td th:text="${c.id}"></td>
+        <td th:text="${c.nombre}"></td>
+        <td th:text="${c.creditos}"></td>
+        <td th:text="${#sets.size(c.estudiantes)}"></td>
+        <td>
+            <a th:href="@{/cursos/{id}/inscribir(id=${c.id})}">Gestionar Inscripciones</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
