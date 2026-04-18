@@ -26,4 +26,13 @@ Abrir:
 ## Entrega GitHub
 Nombre sugerido: `apellido-post2-u8`
 
-Publicacion independiente r2: 2026-04-17 07:27:04
+## Capturas de Pantalla de la Aplicación (Relación ManyToMany)
+
+**1. Lista de Cursos con Estudiantes:**
+![Lista de cursos](img/captura-lista.png)
+
+**2. Formulario de Inscripción:**
+![Formulario de inscripción](img/captura-inscripcion.png)
+
+**3. Tabla Intermedia en MySQL (curso_estudiante):**
+![Tabla en base de datos](img/captura-bd.png)
